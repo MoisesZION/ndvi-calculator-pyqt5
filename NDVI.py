@@ -30,12 +30,12 @@ class NDVI(DialogType, DialogUi):
         strNir = self.txtNir.text().strip()
 
         if strRed == "":
-            QMessageBox.warning(self, "Dato faltante",
+            QMessageBox.warning(self, "Error",
                                  "Por favor, ingrese un valor RED.")
             return
 
         if strNir == "":
-            QMessageBox.warning(self, "Dato faltante",
+            QMessageBox.warning(self, "Error",
                                  "Por favor, ingrese un valor NIR.")
             return
 
