@@ -6,38 +6,25 @@ from PyQt5.QtWidgets import QMessageBox
 # uic.loadUiType() lee el file y crea dos clases ; en donde se tiene el setup de widgets y ventana
 DialogUi, DialogType = uic.loadUiType("NDVI.ui")
 
-
 class NDVI(DialogType, DialogUi):
-    """Calculadora puntual de NDVI (Normalized Difference Vegetation Index).
-
-    Hereda de DialogType (QDialog) y de DialogUi (la interfaz generada
-    a partir de NDVI.ui), siguiendo la misma filosofía que ConvLongArc.
-    """
-
+    """Calculadora de NDVI (Normalized Difference Vegetation Index).
+        Tiene dos herencias (Padre y Madre)"""
+#El de DialoguUi deja que si modificamos algo en Qt Designer, no tenemos que modificar el código de la clase NDVI, ya que se actualiza automáticamente al leer el archivo .ui.
     def __init__(self):
-        """Constructor de la clase.
-
-        1) Llama al constructor de la clase padre (QDialog).
-        2) Construye la interfaz gráfica con setupUi(self), lo que crea
-           todos los objetos definidos en NDVI.ui (txtRed, txtNir, etc.)
-           como atributos de self.
-        3) Conecta cada botón de la interfaz con su método correspondiente.
-        """
+        """Constructor de la clase."""
         super().__init__()
         self.setupUi(self)
-
         self.btnCalcular.clicked.connect(self.btnCalcular_clicked)
         self.btnLimpiar.clicked.connect(self.btnLimpiar_clicked)
         self.btnSalir.clicked.connect(self.btnSalir_clicked)
 
     def btnCalcular_clicked(self):
-        """Valida los datos ingresados, calcula el NDVI y muestra
-        el resultado junto con su interpretación.
+        """Validacion y calculo. 
+        Muestra el resultado e interpretación.
 
         Fórmula:
             NDVI = (NIR - RED) / (NIR + RED)
         """
-
         # --- 1. Verificar que los campos no estén vacíos -----------------
         strRed = self.txtRed.text().strip()
         strNir = self.txtNir.text().strip()
